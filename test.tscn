@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bpi6wupx8twun"]
+[gd_scene load_steps=13 format=3 uid="uid://bpi6wupx8twun"]
 
 [ext_resource type="Script" uid="uid://p74inf80imlf" path="res://scripts/load.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dwycqawf86h8p" path="res://scripts/player_manager.gd" id="1_37kl0"]
@@ -8,16 +8,6 @@
 [ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
 [ext_resource type="PackedScene" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
 [ext_resource type="PackedScene" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_mf4mk"]
-size = Vector3(100, 1, 100)
-
-[sub_resource type="BoxMesh" id="BoxMesh_37kl0"]
-size = Vector3(100, 1, 100)
-subdivide_width = 5
-subdivide_height = 5
 
 [sub_resource type="Sky" id="Sky_8uh7m"]
 
@@ -36,24 +26,15 @@ shader_parameter/shake_color_rate = 0.01
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vbegm"]
 shader = ExtResource("4_g14j6")
-shader_parameter/threshold = 0.7
-shader_parameter/smoothness = 0.05
+shader_parameter/threshold = 0.55
+shader_parameter/smoothness = 0.03
 shader_parameter/bg_color = Color(0, 0, 0, 1)
-shader_parameter/fg_color = Color(1, 1, 0.14902, 1)
-shader_parameter/invert = true
+shader_parameter/fg_color = Color(1, 1, 1, 1)
+shader_parameter/invert = false
 shader_parameter/intensity = 1.0
 
 [node name="test" type="Node3D"]
 script = ExtResource("1_8uh7m")
-
-[node name="Ground" type="StaticBody3D" parent="."]
-physics_material_override = SubResource("PhysicsMaterial_8uh7m")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
-shape = SubResource("BoxShape3D_mf4mk")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
-mesh = SubResource("BoxMesh_37kl0")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_6uqi0")
