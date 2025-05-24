@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		
 	# Items
 	if input.is_action_just_pressed(&"Action"):
-		
+		pass
 		
 	
 	if is_on_floor():

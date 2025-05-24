@@ -12,8 +12,6 @@ collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_7822p")
 engine_force_value = 5000.0
-steer_speed = null
-steer_limit = null
 decel = 3000.0
 gravity = 10.0
 
