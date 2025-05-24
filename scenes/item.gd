@@ -29,7 +29,7 @@ func _on_activation_area_body_entered(body: Node3D) -> void:
 			print("hahahha")
 			if body.parrying == true:
 				print("parry")
-				apply_central_impulse(-linear_velocity*2) # multiply by 2 because just one will cancel out the velocity we already have
+				apply_central_impulse(Vector3(-linear_velocity.x*2, linear_velocity.y+5, -linear_velocity.z*2)) # multiply by 2 because just one will cancel out the velocity we already have
 				effects_manager.display_impact_frame()
 				
 		
