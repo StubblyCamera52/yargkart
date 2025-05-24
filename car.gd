@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@export var engine_force_value: float = 30.0
+@export var engine_force_value: float = 2.5
 @export var steer_speed: float = 1.5
 @export var steer_limit: float = 0.5
 @export var decel: float = 3
@@ -69,11 +69,16 @@ func _physics_process(delta: float) -> void:
 	steer_target *= steer_limit
 	
 	if input.is_action_pressed("Accelerate"):
-		engine = engine_force_value
+		engine = clamp(engine, -5, 3000)
+		engine += delta*engine_force_value
 	elif input.is_action_pressed("Brake"):
-		engine = -engine_force_value
+		engine = clamp(engine, -3000, 5)
+		engine -= delta*engine_force_value
 	else:
 		engine = 0.0
+		if abs(player_vel) <= 5:
+			player_vel = 0
+	engine = clamp(engine, -3000, 3000)
 		
 	if is_on_floor():
 		decel = 30
@@ -82,8 +87,7 @@ func _physics_process(delta: float) -> void:
 		decel = 5
 		velocity.y -= gravity*delta
 		gravity += 10
-		if velocity.y < -75:
-			velocity.y = -75
+		velocity.y = clamp(velocity.y, -75, 75)
 		
 	steer = move_toward(steer, steer_target, delta*steer_speed)
 	rotation.y+=steer_target*delta*steer_speed*0.1
@@ -97,6 +101,9 @@ func _physics_process(delta: float) -> void:
 	rotate_wheels_x(engine*delta, delta)
 	rotate_wheels_y(deg_to_rad(car_rotation_dir)*0.5, delta)
 	move_and_slide()
+	
+	if is_on_wall():
+		player_vel = 0
 	
 	#items
 	if input.is_action_just_pressed(&"Action"):
