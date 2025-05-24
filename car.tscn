@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4eycbitbjbxg"]
+[gd_scene load_steps=5 format=3 uid="uid://b4eycbitbjbxg"]
 
 [ext_resource type="Script" uid="uid://dp3ui4xb33mng" path="res://car.gd" id="1_7822p"]
+[ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
 [ext_resource type="PackedScene" uid="uid://bdhw1pv7jvm3i" path="res://models/yargkart.glb" id="2_uoj53"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_24jkt"]
@@ -15,22 +16,34 @@ script = ExtResource("1_7822p")
 shape = SubResource("BoxShape3D_24jkt")
 
 [node name="FLWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.580147, -0.363534, -0.552427)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.580147, -0.363534, -0.638214)
 wheel_radius = 0.3
+
+[node name="FLWheelModel" parent="FLWheel" instance=ExtResource("2_k61xc")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0695269, 0, -2.38419e-07)
 
 [node name="FRWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.580415, -0.389785, 0.55)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.580415, -0.389785, 0.59413)
 wheel_radius = 0.3
+
+[node name="FrWheelModel" parent="FRWheel" instance=ExtResource("2_k61xc")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.0906091, 0, 5.96046e-08)
 
 [node name="BRWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.631625, -0.389785, 0.55)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.571746, -0.389785, 0.59413)
 use_as_traction = true
 wheel_radius = 0.3
 
+[node name="BRWheelModel" parent="BRWheel" instance=ExtResource("2_k61xc")]
+transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.0906091, 0, 5.96046e-08)
+
 [node name="BLWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.631625, -0.389785, -0.55)
+transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.571746, -0.389785, -0.705314)
 use_as_traction = true
 wheel_radius = 0.3
+
+[node name="BLWheelModel" parent="BLWheel" instance=ExtResource("2_k61xc")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-0.00672638, 0.481707, -0.876307, -0.0122352, 0.876221, 0.481754, 0.999903, 0.0139622, -3.83046e-08, 0, 0, 0)
