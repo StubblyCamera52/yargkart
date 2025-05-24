@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bc3krvob450ls"]
+
+[ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/test.gdshader" id="1_a62xw"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ew1xq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a62xw"]
+size = Vector3(100, 1, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_dfl3f"]
+size = Vector3(100, 1, 100)
+subdivide_width = 5
+subdivide_height = 5
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nfsdt"]
+sky_energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_8uh7m"]
+sky_material = SubResource("ProceduralSkyMaterial_nfsdt")
+
+[sub_resource type="Environment" id="Environment_oke8h"]
+background_mode = 2
+sky = SubResource("Sky_8uh7m")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_867r3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a62xw"]
+shader = ExtResource("1_a62xw")
+shader_parameter/threshold = 0.5
+shader_parameter/smoothness = 0.05
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/fg_color = Color(1, 1, 1, 1)
+shader_parameter/invert = false
+shader_parameter/intensity = 1.0
+
+[node name="shader_stuff" type="Node3D"]
+
+[node name="Ground" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_ew1xq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_a62xw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ground"]
+mesh = SubResource("BoxMesh_dfl3f")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_oke8h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.53808, 0.842894, 0, -0.842894, 0.53808, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4679, 0)
+mesh = SubResource("CapsuleMesh_867r3")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.840217, 0.542251, 0, -0.542251, 0.840217, 0, 4.94225, 2.34891)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_a62xw")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
