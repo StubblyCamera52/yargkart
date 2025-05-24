@@ -36,7 +36,7 @@ func _physics_process(delta: float) -> void:
 		
 	# Items
 	if input.is_action_just_pressed(&"Action"):
-		pass
+		item_manager.use_item(&"any", player, Vector3(0, 0, 0), position)
 		
 	
 	if is_on_floor():
