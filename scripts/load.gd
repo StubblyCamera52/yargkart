@@ -1,6 +1,7 @@
 extends Node3D
 
 @onready var player_manager = $PlayerManager
+@onready var item_manager = $ItemManager
 
 var player_nodes := {}
 
@@ -18,7 +19,7 @@ func spawn_player(player: int) -> void:
 	
 	var player_device = player_manager.get_device_for_player(player)
 	
-	player_kart.init(player, player_device)
+	player_kart.init(player, player_device, item_manager)
 	
 	player_nodes[player] = player_kart
 

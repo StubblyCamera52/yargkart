@@ -6,6 +6,8 @@ extends CharacterBody3D
 @export var decel: float = 30.0
 @export var gravity: float = 30.0
 
+var item_manager
+
 var player: int
 var input
 var steer_target := 0
@@ -15,8 +17,10 @@ var player_vel := 0.0
 
 var previous_speed = velocity.length()
 
-func init(player_id: int, device_id: int) -> void:
+func init(player_id: int, device_id: int, item_manager_node) -> void:
 	player = player_id
+	
+	item_manager = item_manager_node
 	
 	input = DeviceInput.new(device_id)
 
@@ -29,6 +33,11 @@ func _physics_process(delta: float) -> void:
 		engine = engine_force_value
 	else:
 		engine = 0.0
+		
+	# Items
+	if input.is_action_just_pressed(&"Action"):
+		
+		
 	
 	if is_on_floor():
 		pass

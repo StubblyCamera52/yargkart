@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpi6wupx8twun"]
+[gd_scene load_steps=11 format=3 uid="uid://bpi6wupx8twun"]
 
 [ext_resource type="Script" uid="uid://p74inf80imlf" path="res://scripts/load.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dwycqawf86h8p" path="res://scripts/player_manager.gd" id="1_37kl0"]
 [ext_resource type="Shader" uid="uid://db51o24kgjcf6" path="res://shaders/glitch.gdshader" id="3_6uqi0"]
+[ext_resource type="Script" uid="uid://dwgm3hemdjugb" path="res://scripts/item_manager.gd" id="4_ppyta"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
 
@@ -70,3 +71,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="ItemManager" type="Node" parent="."]
+script = ExtResource("4_ppyta")
