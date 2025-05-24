@@ -6,7 +6,7 @@ extends CharacterBody3D
 @export var decel: float = 30.0
 @export var gravity: float = 30.0
 @export var speed_limit: float = 4500.0 # miles per hour lmao
-@export var wheel_rotate_speed: float = 0.01
+@export var wheel_rotate_speed: float = 2
 
 var parrying = false
 var parry_allowed = true
@@ -23,6 +23,8 @@ var player_vel := 0.0
 @onready var wheelFR = $FrWheelModel
 @onready var wheelBL = $BLWheelModel
 @onready var wheelBR = $BRWheelModel
+var wheel_default_y = deg_to_rad(90)
+var car_rotation_dir = 0.0
 
 var previous_speed = velocity.length()
 
@@ -40,10 +42,8 @@ func rotate_wheels_x(dir: float, delta: float) -> void:
 	wheelBR.rotation.x = move_toward(player_vel, dir, delta*wheel_rotate_speed)
 	
 func rotate_wheels_y(dir: float, delta: float) -> void:
-	wheelFL.rotation.y = move_toward(player_vel, dir, delta*wheel_rotate_speed)
-	wheelFR.rotation.y = move_toward(player_vel, dir, delta*wheel_rotate_speed)
-	wheelBL.rotation.y = move_toward(player_vel, dir, delta*wheel_rotate_speed)
-	wheelBR.rotation.y = move_toward(player_vel, dir, delta*wheel_rotate_speed)
+	wheelFL.rotation.y = move_toward(wheelFL.rotation.y, deg_to_rad(90)+dir, delta*wheel_rotate_speed)
+	wheelFR.rotation.y = move_toward(wheelFR.rotation.y, deg_to_rad(-90)+dir, delta*wheel_rotate_speed)
 	
 func rotate_wheels_z(dir: float, delta: float) -> void:
 	wheelFL.rotation.z = move_toward(player_vel, dir, delta*wheel_rotate_speed)
@@ -52,11 +52,24 @@ func rotate_wheels_z(dir: float, delta: float) -> void:
 	wheelBR.rotation.z = move_toward(player_vel, dir, delta*wheel_rotate_speed)
 
 func _physics_process(delta: float) -> void:
+	wheel_rotate_speed = deg_to_rad(car_rotation_dir)**2+15
+	car_rotation_dir += input.get_axis("Steer_Right", "Steer_Left")*wheel_rotate_speed
+	var car_normalize_spd = player_vel*0.05
+	if car_normalize_spd > 100:
+		car_normalize_spd = 100
+	if car_normalize_spd < -100:
+		car_normalize_spd = -100
+	car_rotation_dir = move_toward(car_rotation_dir, 0, delta*car_normalize_spd)
+	if car_rotation_dir > 90:
+		car_rotation_dir = 90
+	if car_rotation_dir < -90:
+		car_rotation_dir = -90
 	var gas_input_amount = input.get_action_strength("Accelerate")
 	steer_speed = player_vel*0.005
-	if steer_speed > 10:
-		steer_speed = 10
-	steer_target = input.get_axis("Steer_Right", "Steer_Left")*steer_speed
+	if steer_speed > 5:
+		steer_speed = 5
+#	steer_target = input.get_axis("Steer_Right", "Steer_Left")*steer_speed
+	steer_target = deg_to_rad(car_rotation_dir)*steer_speed
 	steer_target *= steer_limit
 	
 	if input.is_action_pressed("Accelerate"):
@@ -78,8 +91,8 @@ func _physics_process(delta: float) -> void:
 	player_vel = move_toward(player_vel, 0, decel*delta)
 	velocity.x = cos(rotation.y)*player_vel*delta
 	velocity.z = -sin(rotation.y)*player_vel*delta
-	
 	rotate_wheels_x(engine*delta, delta)
+	rotate_wheels_y(deg_to_rad(car_rotation_dir)*0.5, delta)
 	move_and_slide()
 	
 	#items
