@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0cw36cyf86uy"]
+
+[ext_resource type="Script" uid="uid://deekixfjii5xd" path="res://scenes/item.gd" id="1_4gq7n"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_r3ghi"]
+friction = 0.1
+bounce = 0.5
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_r3ghi"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_4gq7n"]
+radius = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_s8enn"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Item" type="RigidBody3D"]
+physics_material_override = SubResource("PhysicsMaterial_r3ghi")
+script = ExtResource("1_4gq7n")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_r3ghi")
+
+[node name="ActivationArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ActivationArea"]
+shape = SubResource("SphereShape3D_4gq7n")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_s8enn")
