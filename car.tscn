@@ -9,7 +9,6 @@ size = Vector3(2, 1, 1)
 
 [node name="Car" type="CharacterBody3D"]
 collision_layer = 16
-collision_mask = 3
 script = ExtResource("1_7822p")
 engine_force_value = 5000.0
 decel = 3000.0

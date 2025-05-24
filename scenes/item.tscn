@@ -16,6 +16,8 @@ radius = 1.0
 size = Vector3(0.5, 0.5, 0.5)
 
 [node name="Item" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 3
 physics_material_override = SubResource("PhysicsMaterial_r3ghi")
 script = ExtResource("1_4gq7n")
 
@@ -23,6 +25,8 @@ script = ExtResource("1_4gq7n")
 shape = SubResource("SphereShape3D_r3ghi")
 
 [node name="ActivationArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 18
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ActivationArea"]
 shape = SubResource("SphereShape3D_4gq7n")

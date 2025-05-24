@@ -34,9 +34,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		engine = 0.0
 		
-	# Items
-	if input.is_action_just_pressed(&"Action"):
-		item_manager.use_item(&"any", player, Vector3(0, 0, 0), position)
 		
 	
 	if is_on_floor():
@@ -50,6 +47,10 @@ func _physics_process(delta: float) -> void:
 	velocity.x = cos(rotation.y)*player_vel*delta
 	velocity.z = -sin(rotation.y)*player_vel*delta
 	move_and_slide()
+	
+	#items
+	if input.is_action_just_pressed(&"Action"):
+		item_manager.use_item(&"any", player, Vector3(cos(rotation.y)*10, 5, -sin(rotation.y)*10), position)
 	
 	previous_speed = 0
 	
