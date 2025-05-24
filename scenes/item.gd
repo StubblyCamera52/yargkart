@@ -4,6 +4,7 @@ var player
 
 var reset_state = false
 var moveVector: Vector3
+var effects_manager
 
 func _integrate_forces(state):
 	if reset_state:
@@ -14,6 +15,21 @@ func move_body(targetPos: Vector3):
 	moveVector = targetPos
 	reset_state = true
 
-func init(initial_impulse: Vector3, item_model: StringName, player_id: int) -> void:
+func init(initial_impulse: Vector3, item_model: StringName, player_id: int, effects_manager_node) -> void:
 	player = player_id
 	apply_central_impulse(initial_impulse)
+	effects_manager = effects_manager_node
+
+
+func _on_activation_area_body_entered(body: Node3D) -> void:
+	if body.name == "Car":
+		var player_hit_id = body.player
+		print(player_hit_id)
+		if true:#player_hit_id != player:
+			print("hahahha")
+			if body.parrying == true:
+				print("parry")
+				apply_central_impulse(-linear_velocity)
+				effects_manager.display_impact_frame()
+				
+		

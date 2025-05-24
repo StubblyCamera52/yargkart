@@ -1,9 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpi6wupx8twun"]
+[gd_scene load_steps=14 format=3 uid="uid://bpi6wupx8twun"]
 
 [ext_resource type="Script" uid="uid://p74inf80imlf" path="res://scripts/load.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dwycqawf86h8p" path="res://scripts/player_manager.gd" id="1_37kl0"]
 [ext_resource type="Shader" uid="uid://db51o24kgjcf6" path="res://shaders/glitch.gdshader" id="3_6uqi0"]
+[ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/threshhold.gdshader" id="4_g14j6"]
 [ext_resource type="Script" uid="uid://dwgm3hemdjugb" path="res://scripts/item_manager.gd" id="4_ppyta"]
+[ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
 
@@ -30,6 +32,15 @@ shader_parameter/shake_speed = 5.0
 shader_parameter/shake_block_size = 30.5
 shader_parameter/shake_color_rate = 0.01
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vbegm"]
+shader = ExtResource("4_g14j6")
+shader_parameter/threshold = 0.7
+shader_parameter/smoothness = 0.05
+shader_parameter/bg_color = Color(0, 0, 0, 1)
+shader_parameter/fg_color = Color(1, 1, 0.14902, 1)
+shader_parameter/invert = true
+shader_parameter/intensity = 1.0
+
 [node name="test" type="Node3D"]
 script = ExtResource("1_8uh7m")
 
@@ -54,15 +65,6 @@ script = ExtResource("1_37kl0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Impact" type="ColorRect" parent="CanvasLayer"]
-visible = false
-material = SubResource("ShaderMaterial_ppyta")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="Glitch" type="ColorRect" parent="CanvasLayer"]
 visible = false
 material = SubResource("ShaderMaterial_ppyta")
@@ -72,5 +74,23 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Impact" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_vbegm")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="ItemManager" type="Node" parent="."]
 script = ExtResource("4_ppyta")
+
+[node name="EffectsManager" type="Node" parent="."]
+script = ExtResource("5_ykrsh")
+
+[node name="ImpactTimer" type="Timer" parent="EffectsManager"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="EffectsManager/ImpactTimer" to="EffectsManager" method="_on_impact_timer_timeout"]

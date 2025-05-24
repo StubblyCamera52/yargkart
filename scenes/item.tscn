@@ -33,3 +33,5 @@ shape = SubResource("SphereShape3D_4gq7n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_s8enn")
+
+[connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]

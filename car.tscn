@@ -39,3 +39,12 @@ transform = Transform3D(-2.18556e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18556e-08, 
 
 [node name="BLWheelModel" parent="." instance=ExtResource("2_k61xc")]
 transform = Transform3D(6.5567e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, 6.5567e-08, -0.571746, -0.389785, -0.705314)
+
+[node name="ParryCooldown" type="Timer" parent="."]
+one_shot = true
+
+[node name="ParryDebounce" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
+[connection signal="timeout" from="ParryDebounce" to="." method="_on_parry_debounce_timeout"]
