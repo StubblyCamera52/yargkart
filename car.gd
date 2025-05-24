@@ -14,7 +14,7 @@ func _physics_process(delta: float) -> void:
 	var gas_input_amount = input.get_action_strength("Accelerate")
 	var steer_input_amount = input.get_axis("Steer_Left", "Steer_Right")
 	
-	if Input.is_action_pressed("Accelerate"):
+	if input.is_action_pressed("Accelerate"):
 		engine_force = gas_input_amount*1000
 	else:
 		engine_force = 0
