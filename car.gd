@@ -1,4 +1,4 @@
-extends VehicleBody3D
+extends CharacterBody3D
 
 @export var engine_force_value: float = 30.0
 @export var steer_speed: float = 1.5
@@ -7,8 +7,10 @@ extends VehicleBody3D
 var player: int
 var input
 var steer_target := 0
+var engine
+var steer
 
-var previous_speed = linear_velocity.length()
+var previous_speed = 0
 
 func init(player_id: int, device_id: int) -> void:
 	player = player_id
@@ -21,10 +23,10 @@ func _physics_process(delta: float) -> void:
 	steer_target *= steer_limit
 	
 	if input.is_action_pressed("Accelerate"):
-		engine_force = engine_force_value
+		engine = engine_force_value
 	else:
-		engine_force = 0.0
+		engine = 0.0
 		
-	steering = move_toward(steering, steer_target, delta*steer_speed)
+	steer = move_toward(steer, steer_target, delta*steer_speed)
 	
-	previous_speed = linear_velocity.length()
+	previous_speed = 0

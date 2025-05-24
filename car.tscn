@@ -7,7 +7,7 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_24jkt"]
 size = Vector3(2, 1, 1)
 
-[node name="Car" type="VehicleBody3D"]
+[node name="Car" type="CharacterBody3D"]
 collision_layer = 16
 collision_mask = 3
 script = ExtResource("1_7822p")
@@ -16,46 +16,25 @@ engine_force_value = 200.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_24jkt")
 
-[node name="FLWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.580147, -0.363534, -0.638214)
-use_as_traction = true
-use_as_steering = true
-wheel_radius = 0.3
-
-[node name="FLWheelModel" parent="FLWheel" instance=ExtResource("2_k61xc")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0.0695269, 0, -2.38419e-07)
-
-[node name="FRWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, 0.580415, -0.389785, 0.59413)
-use_as_traction = true
-use_as_steering = true
-wheel_radius = 0.3
-
-[node name="FrWheelModel" parent="FRWheel" instance=ExtResource("2_k61xc")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.0906091, 0, 5.96046e-08)
-
-[node name="BRWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.571746, -0.389785, 0.59413)
-use_as_traction = true
-wheel_radius = 0.3
-
-[node name="BRWheelModel" parent="BRWheel" instance=ExtResource("2_k61xc")]
-transform = Transform3D(-0.5, 0, -4.37114e-08, 0, 0.5, 0, 4.37114e-08, 0, -0.5, -0.0906091, 0, 5.96046e-08)
-
-[node name="BLWheel" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1.31134e-07, 0, 1, 0, 1, 0, -1, 0, 1.31134e-07, -0.571746, -0.389785, -0.705314)
-use_as_traction = true
-wheel_radius = 0.3
-
-[node name="BLWheelModel" parent="BLWheel" instance=ExtResource("2_k61xc")]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-0.00672638, 0.481707, -0.876307, -0.0122352, 0.876221, 0.481754, 0.999903, 0.0139622, -3.83046e-08, 0, 0, 0)
 spring_length = 5.0
 
 [node name="Camera3D" type="Camera3D" parent="SpringArm3D"]
 transform = Transform3D(1, -9.31323e-10, 5.70424e-11, 9.31323e-10, 1, -3.03412e-08, -4.61945e-10, 5.90715e-08, 1, 0.00122652, -0.0878265, 3.81487)
+current = true
 
 [node name="KartModel" parent="." instance=ExtResource("2_uoj53")]
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.0850269, -0.138039, 0)
+
+[node name="FLWheelModel" parent="." instance=ExtResource("2_k61xc")]
+transform = Transform3D(6.5567e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, 6.5567e-08, 0.580147, -0.363534, -0.707741)
+
+[node name="FrWheelModel" parent="." instance=ExtResource("2_k61xc")]
+transform = Transform3D(-2.18556e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18556e-08, 0.580415, -0.389785, 0.684739)
+
+[node name="BRWheelModel" parent="." instance=ExtResource("2_k61xc")]
+transform = Transform3D(-2.18556e-08, 0, -0.5, 0, 0.5, 0, 0.5, 0, -2.18556e-08, -0.571746, -0.389785, 0.684739)
+
+[node name="BLWheelModel" parent="." instance=ExtResource("2_k61xc")]
+transform = Transform3D(6.5567e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, 6.5567e-08, -0.571746, -0.389785, -0.705314)
