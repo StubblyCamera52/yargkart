@@ -1,0 +1,38 @@
+[remap]
+
+importer="texture"
+type="CompressedTexture2D"
+uid="uid://btnrw67i1q8w0"
+path.s3tc="res://.godot/imported/yargtrack full_yargchecker.png-904f6e55c266dfde3adec8a80d0acbef.s3tc.ctex"
+metadata={
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "f4e875b4f7821b01df2b8a0d5bf514a3"
+}
+
+[deps]
+
+source_file="res://models/yargtrack full_yargchecker.png"
+dest_files=["res://.godot/imported/yargtrack full_yargchecker.png-904f6e55c266dfde3adec8a80d0acbef.s3tc.ctex"]
+
+[params]
+
+compress/mode=2
+compress/high_quality=false
+compress/lossy_quality=0.7
+compress/hdr_compression=1
+compress/normal_map=0
+compress/channel_pack=0
+mipmaps/generate=true
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/normal_map_invert_y=false
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=0

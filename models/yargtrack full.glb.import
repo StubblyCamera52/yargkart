@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d0rx3hse8f6a5"
-path="res://.godot/imported/yargtrack offroad.glb-c3663fa2ad9917412d051bd236020e18.scn"
+uid="uid://trjevykpjf06"
+path="res://.godot/imported/yargtrack full.glb-d59bccc02ac2501e009cbaa47ddea5d3.scn"
 
 [deps]
 
-source_file="res://models/yargtrack offroad.glb"
-dest_files=["res://.godot/imported/yargtrack offroad.glb-c3663fa2ad9917412d051bd236020e18.scn"]
+source_file="res://models/yargtrack full.glb"
+dest_files=["res://.godot/imported/yargtrack full.glb-d59bccc02ac2501e009cbaa47ddea5d3.scn"]
 
 [params]
 

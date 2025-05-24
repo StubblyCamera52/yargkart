@@ -92,6 +92,7 @@ func _physics_process(delta: float) -> void:
 	steer = move_toward(steer, steer_target, delta*steer_speed)
 	rotation.y+=steer_target*delta*steer_speed*0.1
 	if is_on_floor():
+		velocity.y=0
 		player_vel += engine*delta
 		if player_vel > speed_limit:
 			player_vel = speed_limit
