@@ -17,7 +17,7 @@ func init(player_id: int, device_id: int) -> void:
 
 func _physics_process(delta: float) -> void:
 	var gas_input_amount = input.get_action_strength("Accelerate")
-	steer_target = input.get_axis("Steer_Right", "Steer_Left")*4
+	steer_target = input.get_axis("Steer_Right", "Steer_Left")*2
 	steer_target *= steer_limit
 	
 	if input.is_action_pressed("Accelerate"):
