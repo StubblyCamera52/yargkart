@@ -23,11 +23,11 @@ sky = SubResource("Sky_8uh7m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppyta"]
 shader = ExtResource("3_6uqi0")
-shader_parameter/threshold = 0.5
+shader_parameter/threshold = 0.674
 shader_parameter/smoothness = 0.05
 shader_parameter/bg_color = Color(0, 0, 0, 1)
-shader_parameter/fg_color = Color(1, 1, 1, 1)
-shader_parameter/invert = false
+shader_parameter/fg_color = Color(1, 1, 0.12549, 1)
+shader_parameter/invert = true
 shader_parameter/intensity = 1.0
 
 [node name="test" type="Node3D"]
@@ -56,7 +56,6 @@ script = ExtResource("1_37kl0")
 visible = false
 
 [node name="Impact" type="ColorRect" parent="CanvasLayer"]
-visible = false
 material = SubResource("ShaderMaterial_ppyta")
 anchors_preset = 15
 anchor_right = 1.0
