@@ -14,6 +14,8 @@ func spawn_player(player: int) -> void:
 	
 	add_child(player_kart)
 	
+	player_kart.position = Vector3(randf()*50-25, 2, randf()*50-25)
+	
 	var player_device = player_manager.get_device_for_player(player)
 	
 	player_kart.init(player, player_device)

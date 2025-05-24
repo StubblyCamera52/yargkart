@@ -1,7 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bpi6wupx8twun"]
+[gd_scene load_steps=9 format=3 uid="uid://bpi6wupx8twun"]
 
 [ext_resource type="Script" uid="uid://p74inf80imlf" path="res://scripts/load.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dwycqawf86h8p" path="res://scripts/player_manager.gd" id="1_37kl0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_mf4mk"]
 size = Vector3(100, 1, 100)
@@ -25,6 +27,7 @@ sky = SubResource("Sky_8uh7m")
 script = ExtResource("1_8uh7m")
 
 [node name="Ground" type="StaticBody3D" parent="."]
+physics_material_override = SubResource("PhysicsMaterial_8uh7m")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
 shape = SubResource("BoxShape3D_mf4mk")
