@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dypo86i5q6k6g"]
+
+[ext_resource type="Texture2D" uid="uid://unybjid75gsk" path="res://models/yargkart tex.png" id="1_qxb7v"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_qxb7v")
+albedo_texture_force_srgb = true
+texture_filter = 0
