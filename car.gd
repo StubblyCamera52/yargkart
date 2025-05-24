@@ -23,6 +23,7 @@ var player_vel := 0.0
 @onready var wheelFR = $FrWheelModel
 @onready var wheelBL = $BLWheelModel
 @onready var wheelBR = $BRWheelModel
+@onready var groundRay = $RayCast3D
 var wheel_default_y : float = deg_to_rad(90)
 var car_rotation_dir := 0.0
 
@@ -87,6 +88,8 @@ func _physics_process(delta: float) -> void:
 		decel = 5
 		velocity.y -= gravity*delta
 		gravity += 10
+		if groundRay.is_colliding():
+			position.y=groundRay.get_collision_point().y+.75
 		velocity.y = clamp(velocity.y, -75, 75)
 		
 	steer = move_toward(steer, steer_target, delta*steer_speed)

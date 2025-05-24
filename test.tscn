@@ -5,9 +5,9 @@
 [ext_resource type="Shader" uid="uid://db51o24kgjcf6" path="res://shaders/glitch.gdshader" id="3_6uqi0"]
 [ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/threshhold.gdshader" id="4_g14j6"]
 [ext_resource type="Script" uid="uid://dwgm3hemdjugb" path="res://scripts/item_manager.gd" id="4_ppyta"]
-[ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
-[ext_resource type="PackedScene" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
-[ext_resource type="PackedScene" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
+[ext_resource type="Script" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://b6557y823bi72" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
+[ext_resource type="PackedScene" uid="uid://cq3j1ig6y6bga" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
 
 [sub_resource type="Sky" id="Sky_8uh7m"]
 
@@ -82,10 +82,10 @@ wait_time = 0.5
 autostart = true
 
 [node name="yargtrack main" parent="." instance=ExtResource("7_ehkex")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -222.726, -2.58055, -144.194)
+transform = Transform3D(-15, 0, -1.31134e-06, 0, 15, 0, 1.31134e-06, 0, -15, 227.657, -2.58055, 140.601)
 
 [node name="yargtrack offroad" parent="." instance=ExtResource("8_ehkex")]
-transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -222.726, -2.58055, -144.194)
+transform = Transform3D(-15, 0, -1.31134e-06, 0, 15, 0, 1.31134e-06, 0, -15, 227.657, -2.58055, 140.601)
 
 [connection signal="timeout" from="EffectsManager/ImpactTimer" to="EffectsManager" method="_on_impact_timer_timeout"]
 [connection signal="timeout" from="EffectsManager/TestUseItemTimer" to="ItemManager" method="_on_test_use_item_timer_timeout"]
