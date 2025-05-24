@@ -1,8 +1,7 @@
 extends Camera3D
 
-@onready var car = $".."/".."
-
-var camera_rot_target: float = 0
+@export var follow_target: Node3D
+@export var look_target: Node3D
 
 func shake(time: float, strength: float) -> void:
 	var elapsed_time := 0.0
@@ -15,9 +14,11 @@ func shake(time: float, strength: float) -> void:
 		elapsed_time += get_process_delta_time()
 		await get_tree().process_frame
 
-func _physics_process(delta: float) -> void:
-	camera_rot_target = car.rotation.y
-	print(car.velocity.length())
-	fov = lerpf(75, 100, car.velocity.length()/75)
-	rotation.y = car.rotation.y - camera_rot_target
+func _process(delta: float) -> void:
+	#print(car.velocity.length())
+	global_position = global_position.move_toward(follow_target.global_position+Vector3(-cos(follow_target.rotation.y)*4, 2.5, sin(follow_target.rotation.y)*4), delta*50)
+	if global_position.distance_to(follow_target.global_position) > 7:
+		global_position
+	look_at(look_target.global_position)
+	#fov = lerpf(75, 100, follow_target.velocity.length()/75)
 	

@@ -5,9 +5,9 @@
 [ext_resource type="Shader" uid="uid://db51o24kgjcf6" path="res://shaders/glitch.gdshader" id="3_6uqi0"]
 [ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/threshhold.gdshader" id="4_g14j6"]
 [ext_resource type="Script" uid="uid://dwgm3hemdjugb" path="res://scripts/item_manager.gd" id="4_ppyta"]
-[ext_resource type="Script" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
-[ext_resource type="PackedScene" uid="uid://b6557y823bi72" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
-[ext_resource type="PackedScene" uid="uid://bgdj673vbg4d3" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
+[ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
+[ext_resource type="PackedScene" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
+[ext_resource type="PackedScene" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
 
