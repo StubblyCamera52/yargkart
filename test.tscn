@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://p74inf80imlf" path="res://scripts/load.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dwycqawf86h8p" path="res://scripts/player_manager.gd" id="1_37kl0"]
-[ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/test.gdshader" id="3_6uqi0"]
+[ext_resource type="Shader" uid="uid://db51o24kgjcf6" path="res://shaders/glitch.gdshader" id="3_6uqi0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
 
@@ -23,12 +23,11 @@ sky = SubResource("Sky_8uh7m")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ppyta"]
 shader = ExtResource("3_6uqi0")
-shader_parameter/threshold = 0.674
-shader_parameter/smoothness = 0.05
-shader_parameter/bg_color = Color(0, 0, 0, 1)
-shader_parameter/fg_color = Color(1, 1, 0.12549, 1)
-shader_parameter/invert = true
-shader_parameter/intensity = 1.0
+shader_parameter/shake_power = 0.03
+shader_parameter/shake_rate = 0.2
+shader_parameter/shake_speed = 5.0
+shader_parameter/shake_block_size = 30.5
+shader_parameter/shake_color_rate = 0.01
 
 [node name="test" type="Node3D"]
 script = ExtResource("1_8uh7m")
@@ -53,9 +52,18 @@ shadow_enabled = true
 script = ExtResource("1_37kl0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="Impact" type="ColorRect" parent="CanvasLayer"]
+visible = false
+material = SubResource("ShaderMaterial_ppyta")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Glitch" type="ColorRect" parent="CanvasLayer"]
+visible = false
 material = SubResource("ShaderMaterial_ppyta")
 anchors_preset = 15
 anchor_right = 1.0

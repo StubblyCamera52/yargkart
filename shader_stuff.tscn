@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://bc3krvob450ls"]
 
-[ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/test.gdshader" id="1_a62xw"]
+[ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/threshhold.gdshader" id="1_a62xw"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ew1xq"]
 
