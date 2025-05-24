@@ -1,11 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://bpi6wupx8twun"]
+[gd_scene load_steps=16 format=3 uid="uid://bpi6wupx8twun"]
 
 [ext_resource type="Script" uid="uid://p74inf80imlf" path="res://scripts/load.gd" id="1_8uh7m"]
 [ext_resource type="Script" uid="uid://dwycqawf86h8p" path="res://scripts/player_manager.gd" id="1_37kl0"]
 [ext_resource type="Shader" uid="uid://db51o24kgjcf6" path="res://shaders/glitch.gdshader" id="3_6uqi0"]
 [ext_resource type="Shader" uid="uid://bqtmo8sxxie1y" path="res://shaders/threshhold.gdshader" id="4_g14j6"]
 [ext_resource type="Script" uid="uid://dwgm3hemdjugb" path="res://scripts/item_manager.gd" id="4_ppyta"]
-[ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
+[ext_resource type="Script" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://b6557y823bi72" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
+[ext_resource type="PackedScene" uid="uid://bgdj673vbg4d3" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8uh7m"]
 
@@ -97,6 +99,12 @@ one_shot = true
 [node name="TestUseItemTimer" type="Timer" parent="EffectsManager"]
 wait_time = 5.0
 autostart = true
+
+[node name="yargtrack main" parent="." instance=ExtResource("7_ehkex")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -222.726, -2.58055, -144.194)
+
+[node name="yargtrack offroad" parent="." instance=ExtResource("8_ehkex")]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, -222.726, -2.58055, -144.194)
 
 [connection signal="timeout" from="EffectsManager/ImpactTimer" to="EffectsManager" method="_on_impact_timer_timeout"]
 [connection signal="timeout" from="EffectsManager/TestUseItemTimer" to="ItemManager" method="_on_test_use_item_timer_timeout"]

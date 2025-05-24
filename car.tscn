@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
 [ext_resource type="PackedScene" uid="uid://bdhw1pv7jvm3i" path="res://models/yargkart.glb" id="2_uoj53"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_24jkt"]
-size = Vector3(2, 1, 1)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k61xc"]
+radius = 0.784671
+height = 2.36687
 
 [node name="Car" type="CharacterBody3D"]
 collision_layer = 16
@@ -15,7 +16,8 @@ decel = 3000.0
 gravity = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("BoxShape3D_24jkt")
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_k61xc")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-0.00672638, 0.481707, -0.876307, -0.0122352, 0.876221, 0.481754, 0.999903, 0.0139622, -3.83046e-08, 0, 0, 0)
