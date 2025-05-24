@@ -8,6 +8,9 @@ extends CharacterBody3D
 @export var speed_limit: float = 4500.0 # miles per hour lmao
 @export var wheel_rotate_speed: float = 0.01
 
+var parrying = false
+var parry_allowed = true
+
 var item_manager
 
 var player: int
@@ -83,6 +86,12 @@ func _physics_process(delta: float) -> void:
 	if input.is_action_just_pressed(&"Action"):
 		item_manager.use_item(&"any", player, Vector3(cos(rotation.y)*10, 5, -sin(rotation.y)*10), position)
 	
+	if input.is_action_just_pressed(&"Parry") and parry_allowed:
+		$ParryCooldown.start()
+		$ParryDebounce.start()
+		parrying = true
+		#parry_allowed = false
+	
 	previous_speed = 0
 	
 	previous_speed = velocity.length()
@@ -94,3 +103,11 @@ func _physics_process(delta: float) -> void:
 	# make turning, like, passable ✔
 	# wheel crap ➖
 	# make turning not stop immediately
+
+
+func _on_parry_cooldown_timeout() -> void:
+	parry_allowed = true
+
+
+func _on_parry_debounce_timeout() -> void:
+	parrying = false
