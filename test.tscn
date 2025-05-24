@@ -97,7 +97,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="TestUseItemTimer" type="Timer" parent="EffectsManager"]
-wait_time = 5.0
+wait_time = 0.5
 autostart = true
 
 [node name="yargtrack main" parent="." instance=ExtResource("7_ehkex")]

@@ -12,7 +12,7 @@ func use_item(item_type: StringName, player: int, initial_impulse: Vector3, init
 	item.init(initial_impulse, item_type, player, effects_manager)
 
 func test_use_item():
-	use_item("any", 99, Vector3(10, 5, 0), Vector3(0, 3, 0))
+	use_item("any", 99, Vector3(randf()*10-5, randf()*5, randf()*10-5), Vector3(0, 3, 0))
 
 
 func _on_test_use_item_timer_timeout() -> void:
