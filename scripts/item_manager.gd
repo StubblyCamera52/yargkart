@@ -13,3 +13,7 @@ func use_item(item_type: StringName, player: int, initial_impulse: Vector3, init
 
 func test_use_item():
 	use_item("any", 99, Vector3(10, 5, 0), Vector3(0, 3, 0))
+
+
+func _on_test_use_item_timer_timeout() -> void:
+	test_use_item()

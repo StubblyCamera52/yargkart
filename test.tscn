@@ -87,10 +87,16 @@ grow_vertical = 2
 script = ExtResource("4_ppyta")
 
 [node name="EffectsManager" type="Node" parent="."]
+process_mode = 3
 script = ExtResource("5_ykrsh")
 
 [node name="ImpactTimer" type="Timer" parent="EffectsManager"]
-wait_time = 0.1
+wait_time = 0.2
 one_shot = true
 
+[node name="TestUseItemTimer" type="Timer" parent="EffectsManager"]
+wait_time = 5.0
+autostart = true
+
 [connection signal="timeout" from="EffectsManager/ImpactTimer" to="EffectsManager" method="_on_impact_timer_timeout"]
+[connection signal="timeout" from="EffectsManager/TestUseItemTimer" to="ItemManager" method="_on_test_use_item_timer_timeout"]

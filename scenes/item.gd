@@ -25,11 +25,11 @@ func _on_activation_area_body_entered(body: Node3D) -> void:
 	if body.name == "Car":
 		var player_hit_id = body.player
 		print(player_hit_id)
-		if true:#player_hit_id != player:
+		if player_hit_id != player:
 			print("hahahha")
 			if body.parrying == true:
 				print("parry")
-				apply_central_impulse(-linear_velocity)
+				apply_central_impulse(-linear_velocity*2) # multiply by 2 because just one will cancel out the velocity we already have
 				effects_manager.display_impact_frame()
 				
 		
