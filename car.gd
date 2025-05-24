@@ -8,9 +8,9 @@ var player: int
 var input
 var steer_target := 0
 var engine
-var steer
+var steer := 0
 
-var previous_speed = 0
+var previous_speed = velocity.length()
 
 func init(player_id: int, device_id: int) -> void:
 	player = player_id
@@ -29,4 +29,8 @@ func _physics_process(delta: float) -> void:
 		
 	steer = move_toward(steer, steer_target, delta*steer_speed)
 	
+	velocity 
+	
 	previous_speed = 0
+	
+	previous_speed = velocity.length()
