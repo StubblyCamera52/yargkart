@@ -3,7 +3,7 @@ extends CharacterBody3D
 @export var engine_force_value: float = 30.0
 @export var steer_speed: float = 1.5
 @export var steer_limit: float = 0.5
-@export var decel: float = 30.0
+@export var decel: float = 3
 @export var gravity: float = 60.0
 @export var speed_limit: float = 4500.0 # miles per hour lmao
 @export var wheel_rotate_speed: float = 2
@@ -23,8 +23,8 @@ var player_vel := 0.0
 @onready var wheelFR = $FrWheelModel
 @onready var wheelBL = $BLWheelModel
 @onready var wheelBR = $BRWheelModel
-var wheel_default_y = deg_to_rad(90)
-var car_rotation_dir = 0.0
+var wheel_default_y : float = deg_to_rad(90)
+var car_rotation_dir := 0.0
 
 var previous_speed = velocity.length()
 
@@ -70,16 +70,23 @@ func _physics_process(delta: float) -> void:
 	
 	if input.is_action_pressed("Accelerate"):
 		engine = engine_force_value
+	elif input.is_action_pressed("Brake"):
+		engine = -engine_force_value
 	else:
 		engine = 0.0
 		
 	if is_on_floor():
-		pass
+		decel = 30
+		gravity = 60
 	else:
-		velocity.y-=gravity*delta
+		decel = 5
+		velocity.y -= gravity*delta
+		gravity += 10
+		if velocity.y < -75:
+			velocity.y = -75
 		
 	steer = move_toward(steer, steer_target, delta*steer_speed)
-	rotation.y+=steer_target*delta
+	rotation.y+=steer_target*delta*steer_speed*0.1
 	if is_on_floor():
 		player_vel += engine*delta
 		if player_vel > speed_limit:
