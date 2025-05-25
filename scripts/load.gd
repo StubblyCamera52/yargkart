@@ -7,6 +7,8 @@ var player_nodes := {}
 
 @onready var render_target = $RenderTarget
 
+@onready var checkpoints = [$yargcheckpoint, $yargcheckpoint2, $yargcheckpoint3, $yargcheckpoint4, $yargcheckpoint5, $yargcheckpoint6, $yargcheckpoint7, $yargcheckpoint8, $yargcheckpoint9, $yargcheckpoint10]
+
 func _ready() -> void:
 	player_manager.player_joined.connect(spawn_player)
 
@@ -31,7 +33,7 @@ func spawn_player(player: int) -> void:
 	
 	var player_device = player_manager.get_device_for_player(player)
 	
-	player_kart.init(player, player_device, item_manager)
+	player_kart.init(player, player_device, item_manager, checkpoints)
 	
 	player_nodes[player] = player_kart
 	

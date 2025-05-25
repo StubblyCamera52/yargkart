@@ -30,8 +30,10 @@ var car_rotation_dir := 0.0
 
 var previous_speed = velocity.length()
 
-func init(player_id: int, device_id: int, item_manager_node) -> void:
+func init(player_id: int, device_id: int, item_manager_node, checkpoints) -> void:
 	player = player_id
+	print(checkpoints)
+	print(checkpoints[1].global_position)
 	
 	item_manager = item_manager_node
 	print(device_id)
