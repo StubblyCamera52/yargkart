@@ -33,6 +33,8 @@ func init(player_id: int, device_id: int, item_manager_node) -> void:
 	player = player_id
 	
 	item_manager = item_manager_node
+	print(device_id)
+	print(player_id)
 	
 	input = DeviceInput.new(device_id)
 	
