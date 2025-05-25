@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b0cw36cyf86uy"]
+[gd_scene load_steps=9 format=3 uid="uid://b0cw36cyf86uy"]
 
 [ext_resource type="Script" uid="uid://deekixfjii5xd" path="res://scenes/item.gd" id="1_4gq7n"]
 
@@ -14,6 +14,20 @@ radius = 2.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_s8enn"]
 size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4gq7n"]
+shading_mode = 0
+specular_mode = 2
+vertex_color_use_as_albedo = true
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_6muww"]
+material = SubResource("StandardMaterial3D_4gq7n")
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="Gradient" id="Gradient_vljjh"]
+offsets = PackedFloat32Array(0.01, 0.126667, 0.283333, 0.49, 0.66)
+colors = PackedColorArray(1, 1, 1, 1, 0.976471, 0.713726, 0.305882, 1, 0.929412, 0.384314, 0.25098, 1, 0.796078, 0.207843, 0.239216, 1, 0.3, 0.21, 0.246, 1)
 
 [node name="Item" type="RigidBody3D"]
 collision_layer = 2
@@ -33,5 +47,21 @@ shape = SubResource("SphereShape3D_4gq7n")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_s8enn")
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+emitting = false
+amount = 1000
+one_shot = true
+explosiveness = 1.0
+lifetime_randomness = 0.2
+fixed_fps = 15
+mesh = SubResource("BoxMesh_6muww")
+direction = Vector3(0, 1, 0)
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+scale_amount_min = 0.5
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_vljjh")
 
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]

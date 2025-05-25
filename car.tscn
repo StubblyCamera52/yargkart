@@ -54,13 +54,11 @@ one_shot = true
 physics_interpolation_mode = 1
 transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
 top_level = true
-current = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera3D"]
 process_priority = 300
 process_physics_priority = 300
 script = ExtResource("4_72krn")
-host_layers = 512
 metadata/_custom_type_script = "uid://bd046eokvcnu2"
 
 [node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "look_at_target")]
@@ -74,7 +72,6 @@ look_at_mode = 2
 look_at_target = NodePath("..")
 tween_resource = SubResource("Resource_lpol0")
 tween_on_load = false
-host_layers = 512
 follow_offset = Vector3(-4, 4, 0)
 follow_damping = true
 look_at_offset = Vector3(0, 1.5, 0)
