@@ -24,6 +24,7 @@ var player_vel := 0.0
 @onready var wheelBL = $BLWheelModel
 @onready var wheelBR = $BRWheelModel
 @onready var groundRay = $RayCast3D
+@onready var kartMesh = $KartMesh
 var wheel_default_y : float = deg_to_rad(90)
 var car_rotation_dir := 0.0
 
@@ -36,6 +37,7 @@ func init(player_id: int, device_id: int, item_manager_node) -> void:
 	print(device_id)
 	print(player_id)
 	
+	kartMesh.set_surface_override_material(0, load("res://models/kart"+str(player)+"Material.tres"))
 	input = DeviceInput.new(device_id)
 	
 func rotate_wheels_x(dir: float, delta: float) -> void:
