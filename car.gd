@@ -138,13 +138,13 @@ func _physics_process(delta: float) -> void:
 	next_area = checkpoints[next_checkpoint].get_node("Area3D")
 	check_for_point = true
 	if next_area.overlaps_area($Area3D) and check_for_point == true:
-		print("checkpoint passed")
+		#print("checkpoint passed")
 		score += 1
 		next_checkpoint = score % 10
 		next_area = checkpoints[next_checkpoint].get_node("Area3D")
-		print(score)
-		print(next_checkpoint)
-		print(next_area.get_parent().name)
+		#print(score)
+		#print(next_checkpoint)
+		#print(next_area.get_parent().name)
 
 func _on_parry_cooldown_timeout() -> void:
 	parry_allowed = true

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgokgo2dg2by2"]
+
+[ext_resource type="PackedScene" uid="uid://bifyuva65phe3" path="res://models/arrowsign.glb" id="1_d23mp"]
+
+[node name="arrowsign" instance=ExtResource("1_d23mp")]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
