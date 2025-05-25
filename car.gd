@@ -57,7 +57,7 @@ func rotate_wheels_z(dir: float, delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	wheel_rotate_speed = 0.5*deg_to_rad(car_rotation_dir)**2+10
 	car_rotation_dir += input.get_axis("Steer_Right", "Steer_Left")*wheel_rotate_speed
-	var car_normalize_spd = abs(250*deg_to_rad(car_rotation_dir))
+	var car_normalize_spd = abs(player_vel*0.05*deg_to_rad(car_rotation_dir))
 	car_rotation_dir = move_toward(car_rotation_dir, 0, delta*car_normalize_spd)
 	if car_rotation_dir > 90:
 		car_rotation_dir = 90
@@ -75,13 +75,13 @@ func _physics_process(delta: float) -> void:
 		engine = clamp(engine, -5, 3000)
 		engine += delta*engine_force_value
 	elif input.is_action_pressed("Brake"):
-		engine = clamp(engine, -3000, 5)
+		engine = clamp(engine, -1500, 5)
 		engine -= delta*engine_force_value
 	else:
 		engine = 0.0
 		if abs(player_vel) <= 5:
 			player_vel = 0
-	engine = clamp(engine, -3000, 3000)
+	engine = clamp(engine, -1500, 3000)
 		
 	if is_on_floor():
 		decel = 30
@@ -124,15 +124,6 @@ func _physics_process(delta: float) -> void:
 	previous_speed = 0
 	
 	previous_speed = velocity.length()
-
-# to implement:
-	# speed cap ✔
-	# do not accel if in air ✔
-	# make turning, like, good ✖
-	# make turning, like, passable ✔
-	# wheel crap ➖
-	# make turning not stop immediately
-
 
 func _on_parry_cooldown_timeout() -> void:
 	parry_allowed = true
