@@ -112,6 +112,16 @@ theme_override_fonts/font = ExtResource("5_td361")
 theme_override_font_sizes/font_size = 32
 text = "Checkpoint X/9 - Lap 1/2"
 vertical_alignment = 2
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_06lh1")
+
+[node name="CameraLookTarget" type="SpringArm3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_mask = 0
+spring_length = 5.0
+
+[node name="Node3D" type="Node3D" parent="CameraLookTarget"]
 
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
 [connection signal="timeout" from="ParryDebounce" to="." method="_on_parry_debounce_timeout"]
