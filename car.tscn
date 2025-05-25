@@ -1,11 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://b4eycbitbjbxg"]
+[gd_scene load_steps=8 format=4 uid="uid://b4eycbitbjbxg"]
 
 [ext_resource type="Script" uid="uid://dp3ui4xb33mng" path="res://car.gd" id="1_7822p"]
 [ext_resource type="Material" uid="uid://dypo86i5q6k6g" path="res://models/kartMaterial.tres" id="2_72krn"]
 [ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
-[ext_resource type="Script" uid="uid://bd046eokvcnu2" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_72krn"]
-[ext_resource type="Script" uid="uid://csjccrhj5wnx7" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_3d.gd" id="5_v0hk8"]
-[ext_resource type="Script" uid="uid://8umksf8e80fw" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="6_mjudg"]
+[ext_resource type="Script" uid="uid://bckn7oeukq0lw" path="res://camera_3d.gd" id="4_06lh1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k61xc"]
 radius = 0.726298
@@ -45,12 +43,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v0hk8")
 
-[sub_resource type="Resource" id="Resource_lpol0"]
-script = ExtResource("6_mjudg")
-duration = 1.0
-transition = 0
-ease = 2
-
 [node name="Car" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_7822p")
@@ -86,34 +78,6 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Camera3D" type="Camera3D" parent="."]
-physics_interpolation_mode = 1
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
-top_level = true
-
-[node name="PhantomCameraHost" type="Node" parent="Camera3D"]
-process_priority = 300
-process_physics_priority = 300
-script = ExtResource("4_72krn")
-metadata/_custom_type_script = "uid://bd046eokvcnu2"
-
-[node name="PhantomCamera3D" type="Node3D" parent="." node_paths=PackedStringArray("follow_target", "look_at_target")]
-transform = Transform3D(-4.37114e-08, -1, 4.37114e-08, 0, -4.37114e-08, -1, 1, -4.37114e-08, 1.91069e-15, 0, 0, 0)
-top_level = true
-script = ExtResource("5_v0hk8")
-priority = 1
-follow_mode = 1
-follow_target = NodePath("../SpringArm3D/Node3D")
-look_at_mode = 2
-look_at_target = NodePath("..")
-tween_resource = SubResource("Resource_lpol0")
-tween_on_load = false
-follow_offset = Vector3(-4, 4, 0)
-follow_damping = true
-look_at_offset = Vector3(0, 1.5, 0)
-look_at_damping = true
-metadata/_custom_type_script = "uid://csjccrhj5wnx7"
-
 [node name="SpringArm3D" type="SpringArm3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0.573576, -0.819152, 0, 0.819152, 0.573576, 1, 2.50718e-08, -3.58063e-08, 0, 0, 0)
 spring_length = 5.0
@@ -122,6 +86,9 @@ spring_length = 5.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 target_position = Vector3(0, -1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("4_06lh1")
 
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
 [connection signal="timeout" from="ParryDebounce" to="." method="_on_parry_debounce_timeout"]
