@@ -88,8 +88,8 @@ func _physics_process(delta: float) -> void:
 		decel = 5
 		velocity.y -= gravity*delta
 		gravity += 10
-		if groundRay.is_colliding():
-			position.y=groundRay.get_collision_point().y+.75
+		if groundRay.is_colliding() and position.y-groundRay.get_collision_point().y>0.25:
+			position.y=groundRay.get_collision_point().y+0.01
 		velocity.y = clamp(velocity.y, -75, 75)
 		
 	steer = move_toward(steer, steer_target, delta*steer_speed)
