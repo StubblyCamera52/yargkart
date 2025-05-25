@@ -15,5 +15,6 @@ func shake(time: float, strength: float) -> void:
 		elapsed_time += get_process_delta_time()
 		await get_tree().process_frame
 
-func _physics_process(delta: float) -> void:
-	global_position = target.global_position
+func _process(delta: float) -> void:
+	global_position = global_position.move_toward(target.global_position, target.global_position.distance_to(global_position)/7)
+	look_at($"..".global_position)

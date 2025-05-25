@@ -88,6 +88,8 @@ spring_length = 5.0
 target_position = Vector3(0, -1.5, 0)
 
 [node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 0, 0)
+top_level = true
 script = ExtResource("4_06lh1")
 
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
