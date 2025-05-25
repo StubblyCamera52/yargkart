@@ -61,6 +61,7 @@ func rotate_wheels_z(dir: float, delta: float) -> void:
 	wheelBR.rotation.z = move_toward(player_vel, dir, delta*wheel_rotate_speed)
 
 func _physics_process(delta: float) -> void:
+	$Camera3D/CanvasLayer/LapCounter.text = "Player " + str(player)+" - Left Stick to turn, A to accelerate, B to brake, Start to respawn!"
 	wheel_rotate_speed = 0.5*deg_to_rad(car_rotation_dir)**2+10
 	car_rotation_dir += input.get_axis("Steer_Right", "Steer_Left")*wheel_rotate_speed
 	var car_normalize_spd = abs(player_vel*0.05*deg_to_rad(car_rotation_dir))
@@ -76,6 +77,11 @@ func _physics_process(delta: float) -> void:
 #	steer_target = input.get_axis("Steer_Right", "Steer_Left")*steer_speed
 	steer_target = deg_to_rad(car_rotation_dir)*5
 	steer_target *= steer_limit
+	
+	if input.is_action_pressed("Join"):
+		global_position = Vector3(randf()*50-25, 2, randf()*50-25)
+		player_vel = 0
+		
 	
 	if input.is_action_pressed("Accelerate"):
 		engine = clamp(engine, -5, 3000)

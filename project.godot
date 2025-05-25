@@ -23,6 +23,10 @@ MultiplayerInput="*res://addons/multiplayer_input/multiplayer_input.gd"
 
 gdscript/warnings/enable=false
 
+[display]
+
+window/size/mode=3
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg")

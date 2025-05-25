@@ -37,4 +37,4 @@ func _on_activation_area_body_entered(body: Node3D) -> void:
 				if item_type == &"Bomb":
 					$CPUParticles3D.restart()
 					$MeshInstance3D.visible = false
-					body.velocity = Vector3(0,0,0)
+					body.player_vel = 0
