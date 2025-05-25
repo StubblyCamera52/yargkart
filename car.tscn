@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://b4eycbitbjbxg"]
+[gd_scene load_steps=10 format=4 uid="uid://b4eycbitbjbxg"]
 
 [ext_resource type="Script" uid="uid://dp3ui4xb33mng" path="res://car.gd" id="1_7822p"]
 [ext_resource type="Material" uid="uid://dypo86i5q6k6g" path="res://models/kartMaterial.tres" id="2_72krn"]
@@ -43,6 +43,8 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v0hk8")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_td361"]
 
 [node name="Car" type="CharacterBody3D"]
 collision_layer = 16
@@ -112,9 +114,10 @@ theme_override_fonts/font = ExtResource("5_td361")
 theme_override_font_sizes/font_size = 32
 text = "Checkpoint X/9 - Lap 1/2"
 vertical_alignment = 2
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[node name="Area3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_06lh1")
+shape = SubResource("CapsuleShape3D_td361")
 
 [node name="CameraLookTarget" type="SpringArm3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
