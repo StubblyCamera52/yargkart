@@ -1,6 +1,7 @@
 extends Camera3D
 
 @onready var target = $".."/SpringArm3D/Node3D
+@onready var look_target = $".."/CameraLookTarget/Node3D
 
 var camera_rot_target: float = 0
 
@@ -17,4 +18,4 @@ func shake(time: float, strength: float) -> void:
 
 func _process(delta: float) -> void:
 	global_position = global_position.move_toward(target.global_position, target.global_position.distance_to(global_position)/7)
-	look_at($"..".global_position)
+	look_at(look_target.global_position)

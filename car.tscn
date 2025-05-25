@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dp3ui4xb33mng" path="res://car.gd" id="1_7822p"]
 [ext_resource type="Material" uid="uid://dypo86i5q6k6g" path="res://models/kartMaterial.tres" id="2_72krn"]
 [ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
-[ext_resource type="Script" path="res://camera_3d.gd" id="4_06lh1"]
+[ext_resource type="Script" uid="uid://bckn7oeukq0lw" path="res://camera_3d.gd" id="4_06lh1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k61xc"]
 radius = 0.726298
@@ -91,6 +91,13 @@ target_position = Vector3(0, -1.5, 0)
 transform = Transform3D(1, 0, 0, 0, 0.882948, 0.469472, 0, -0.469472, 0.882948, 0, 0, 0)
 top_level = true
 script = ExtResource("4_06lh1")
+
+[node name="CameraLookTarget" type="SpringArm3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+collision_mask = 0
+spring_length = 5.0
+
+[node name="Node3D" type="Node3D" parent="CameraLookTarget"]
 
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
 [connection signal="timeout" from="ParryDebounce" to="." method="_on_parry_debounce_timeout"]
