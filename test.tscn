@@ -80,7 +80,6 @@ one_shot = true
 
 [node name="TestUseItemTimer" type="Timer" parent="EffectsManager"]
 wait_time = 0.5
-autostart = true
 
 [node name="yargtrack main" parent="." instance=ExtResource("7_ehkex")]
 transform = Transform3D(-15, 0, -1.31134e-06, 0, 15, 0, 1.31134e-06, 0, -15, 227.657, -2.58055, 140.601)
