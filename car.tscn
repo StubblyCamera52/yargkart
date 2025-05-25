@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dp3ui4xb33mng" path="res://car.gd" id="1_7822p"]
 [ext_resource type="Material" uid="uid://dypo86i5q6k6g" path="res://models/kartMaterial.tres" id="2_72krn"]
 [ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
-[ext_resource type="Script" uid="uid://bckn7oeukq0lw" path="res://camera_3d.gd" id="4_06lh1"]
+[ext_resource type="Script" path="res://camera_3d.gd" id="4_06lh1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k61xc"]
 radius = 0.726298

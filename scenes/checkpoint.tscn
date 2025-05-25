@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://3oam43gvpri6"]
+
+[ext_resource type="PackedScene" uid="uid://d4io3drxr7e" path="res://models/yargcheckpoint.glb" id="1_yyywg"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yyywg"]
+height = 0.334106
+radius = 3.10205
+
+[node name="yargcheckpoint" instance=ExtResource("1_yyywg")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="." index="2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.45936e-09, -0.0333862)
+shape = SubResource("CylinderShape3D_yyywg")
