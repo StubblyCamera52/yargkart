@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
 [ext_resource type="PackedScene" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
 [ext_resource type="PackedScene" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
-[ext_resource type="PackedScene" path="res://scenes/checkpoint.tscn" id="9_xersf"]
+[ext_resource type="PackedScene" uid="uid://i25wyl2in3iv" path="res://scenes/checkpoint.tscn" id="9_xersf"]
 
 [sub_resource type="Sky" id="Sky_8uh7m"]
 
