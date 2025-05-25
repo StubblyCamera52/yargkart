@@ -129,7 +129,7 @@ func _physics_process(delta: float) -> void:
 	
 	#items
 	if input.is_action_just_pressed(&"Action"):
-		item_manager.use_item(&"any", player, Vector3(cos(rotation.y)*10, 5, -sin(rotation.y)*10), position)
+		item_manager.use_item(&"Bomb", player, Vector3(cos(rotation.y)*20, 5, -sin(rotation.y)*20)+velocity, position)
 	
 	if input.is_action_just_pressed(&"Parry") and parry_allowed:
 		$ParryCooldown.start()
