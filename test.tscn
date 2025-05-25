@@ -101,7 +101,7 @@ transform = Transform3D(-5.68248e-07, 0, -13, 0, 13, 0, 13, 0, -5.68248e-07, 71.
 transform = Transform3D(-13, 0, 1.96295e-06, 0, 13, 0, -1.96295e-06, 0, -13, 383.405, -5.19814, 264.648)
 
 [node name="yargcheckpoint3" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-6.5, 0, -11.2583, 0, 13, 0, 11.2583, 0, -6.5, 408.296, 77.8775, 745.944)
+transform = Transform3D(-15, 0, -1.31134e-06, 0, 15, 0, 1.31134e-06, 0, -15, 227.657, -2.58055, 140.601)
 
 [node name="yargcheckpoint4" parent="." instance=ExtResource("9_xersf")]
 transform = Transform3D(12.557, 0, 3.36465, 0, 13, 0, -3.36465, 0, 12.557, 845.111, 9.42293, 483.728)

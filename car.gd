@@ -28,6 +28,20 @@ var player_vel := 0.0
 var wheel_default_y : float = deg_to_rad(90)
 var car_rotation_dir := 0.0
 
+@onready var checkpoint0 = $yargcheckpoint
+@onready var checkpoint1 = $yargcheckpoint2
+@onready var checkpoint2 = $yargcheckpoint3
+@onready var checkpoint3 = $yargcheckpoint4
+@onready var checkpoint4 = $yargcheckpoint5
+@onready var checkpoint5 = $yargcheckpoint6
+@onready var checkpoint6 = $yargcheckpoint7
+@onready var checkpoint7 = $yargcheckpoint8
+@onready var checkpoint8 = $yargcheckpoint9
+@onready var checkpoint9 = $yargcheckpoint10
+var checkpoints = [
+	checkpoint0,checkpoint1,checkpoint2,checkpoint3,checkpoint4,
+	checkpoint5,checkpoint6,checkpoint7,checkpoint8,checkpoint9]
+
 var previous_speed = velocity.length()
 
 func init(player_id: int, device_id: int, item_manager_node, checkpoints) -> void:
@@ -128,6 +142,17 @@ func _physics_process(delta: float) -> void:
 	previous_speed = 0
 	
 	previous_speed = velocity.length()
+	
+	var score: int
+	var next_checkpoint: int = 0
+	var checkpoint = checkpoints[next_checkpoint]
+	var next_area = checkpoint.Area3D
+	if next_area.area_entered(self.Area3D):
+		print("checkpoint passed")
+		score += 1
+		next_checkpoint = score % 10
+	print(score)
+	print(next_checkpoint)
 
 func _on_parry_cooldown_timeout() -> void:
 	parry_allowed = true
