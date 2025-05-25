@@ -4,6 +4,7 @@
 [ext_resource type="Material" uid="uid://dypo86i5q6k6g" path="res://models/kartMaterial.tres" id="2_72krn"]
 [ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
 [ext_resource type="Script" uid="uid://bckn7oeukq0lw" path="res://camera_3d.gd" id="4_06lh1"]
+[ext_resource type="FontFile" uid="uid://dxko7rd3rrg1" path="res://fonts/FOT-Seurat Pro B.otf" id="5_td361"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k61xc"]
 radius = 0.726298
@@ -42,8 +43,6 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_v0hk8")
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_06lh1"]
 
 [node name="Car" type="CharacterBody3D"]
 collision_layer = 16
@@ -94,17 +93,25 @@ transform = Transform3D(1, 0, 0, 0, 0.882948, 0.469472, 0, -0.469472, 0.882948, 
 top_level = true
 script = ExtResource("4_06lh1")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="Camera3D"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_06lh1")
-[node name="CameraLookTarget" type="SpringArm3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
-collision_mask = 0
-spring_length = 5.0
-
-[node name="Node3D" type="Node3D" parent="CameraLookTarget"]
+[node name="LapCounter" type="Label" parent="Camera3D/CanvasLayer"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = -92.0
+offset_right = 803.0
+offset_bottom = -17.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 17
+theme_override_fonts/font = ExtResource("5_td361")
+theme_override_font_sizes/font_size = 32
+text = "Checkpoint X/9 - Lap 1/2"
+vertical_alignment = 2
 
 [connection signal="timeout" from="ParryCooldown" to="." method="_on_parry_cooldown_timeout"]
 [connection signal="timeout" from="ParryDebounce" to="." method="_on_parry_debounce_timeout"]
