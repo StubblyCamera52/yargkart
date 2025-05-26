@@ -21,6 +21,7 @@ func init(initial_impulse: Vector3, item_model: StringName, player_id: int, effe
 	apply_central_impulse(initial_impulse)
 	effects_manager = effects_manager_node
 	item_type = item_model
+	$GarbageTimer.start()
 
 
 func _on_activation_area_body_entered(body: Node3D) -> void:
@@ -38,3 +39,7 @@ func _on_activation_area_body_entered(body: Node3D) -> void:
 					$CPUParticles3D.restart()
 					$MeshInstance3D.visible = false
 					body.player_vel = 0
+
+
+func _on_garbage_timer_timeout() -> void:
+	queue_free()

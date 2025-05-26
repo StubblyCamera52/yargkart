@@ -64,4 +64,9 @@ scale_amount_min = 0.5
 scale_amount_max = 1.5
 color_ramp = SubResource("Gradient_vljjh")
 
+[node name="GarbageTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
 [connection signal="body_entered" from="ActivationArea" to="." method="_on_activation_area_body_entered"]
+[connection signal="timeout" from="GarbageTimer" to="." method="_on_garbage_timer_timeout"]
