@@ -50,9 +50,10 @@ shadow_mesh = SubResource("ArrayMesh_v0hk8")
 [node name="Car" type="CharacterBody3D"]
 collision_layer = 16
 script = ExtResource("1_7822p")
-engine_force_value = 5000.0
-decel = 3000.0
+engine_force_value = 1000.0
+decel = 50.0
 gravity = 10.0
+speed_limit = 75.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)

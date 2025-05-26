@@ -7,6 +7,18 @@ extends CharacterBody3D
 @export var gravity: float = 60.0
 @export var speed_limit: float = 4500.0 # miles per hour lmao
 @export var wheel_rotate_speed: float = 2
+# Drifting settings
+@export var drift_steering_mult: float = 2.0
+@export var drift_slide_force: float = 30.0
+@export var drift_forward_vel_reduction_mult: float = 0.8
+
+@onready var wheelFL = $FLWheelModel
+@onready var wheelFR = $FrWheelModel
+@onready var wheelBL = $BLWheelModel
+@onready var wheelBR = $BRWheelModel
+@onready var groundRay = $RayCast3D
+@onready var kartMesh = $KartMesh
+@onready var racerModel = $Racer
 
 var parrying = false
 var parry_allowed = true
@@ -19,13 +31,14 @@ var steer_target := 0
 var engine
 var steer := 0
 var player_vel := 0.0
-@onready var wheelFL = $FLWheelModel
-@onready var wheelFR = $FrWheelModel
-@onready var wheelBL = $BLWheelModel
-@onready var wheelBR = $BRWheelModel
-@onready var groundRay = $RayCast3D
-@onready var kartMesh = $KartMesh
-@onready var racerModel = $Racer
+var previous_speed_limit := 0.0
+
+#Drifting variables
+var player_lateral_vel := 0.0
+var is_drifting: bool = false
+var drift_direction: int = 0 # -1 for left +1 for right
+var drift_timer: float = 0
+
 var wheel_default_y : float = deg_to_rad(90)
 var car_rotation_dir := 0.0
 
@@ -69,16 +82,23 @@ func _physics_process(delta: float) -> void:
 	$Camera3D/CanvasLayer/LapCounter.text = "Player " + str(player)+" - Left Stick to turn, A to accelerate, B to brake, Start to respawn!"
 	wheel_rotate_speed = 0.5*deg_to_rad(car_rotation_dir)**2+10
 	car_rotation_dir += input.get_axis("Steer_Right", "Steer_Left")*wheel_rotate_speed
-	var car_normalize_spd = abs(player_vel*0.05*deg_to_rad(car_rotation_dir))
+	var car_normalize_spd = abs(player_vel*3*deg_to_rad(car_rotation_dir))
 	car_rotation_dir = move_toward(car_rotation_dir, 0, delta*car_normalize_spd)
 	if car_rotation_dir > 90:
 		car_rotation_dir = 90
 	if car_rotation_dir < -90:
 		car_rotation_dir = -90
-	var gas_input_amount = input.get_action_strength("Accelerate")
-	steer_speed = player_vel*0.002
-	if steer_speed > 4:
-		steer_speed = 4
+		
+		
+	# Steering
+	if is_drifting:
+		steer_speed = player_vel*0.12*drift_steering_mult
+		if steer_speed > 4*drift_steering_mult:
+			steer_speed = 4*drift_steering_mult
+	else:
+		steer_speed = player_vel*0.12
+		if steer_speed > 4:
+			steer_speed = 4
 #	steer_target = input.get_axis("Steer_Right", "Steer_Left")*steer_speed
 	steer_target = deg_to_rad(car_rotation_dir)*5
 	steer_target *= steer_limit
@@ -89,16 +109,40 @@ func _physics_process(delta: float) -> void:
 		
 	
 	if input.is_action_pressed("Accelerate"):
-		engine = clamp(engine, -5, 3000)
+		engine = clamp(engine, -5, 200)
 		engine += delta*engine_force_value
 	elif input.is_action_pressed("Brake"):
-		engine = clamp(engine, -1500, 5)
+		engine = clamp(engine, -100, 5)
 		engine -= delta*engine_force_value
 	else:
 		engine = 0.0
 		if abs(player_vel) <= 5:
 			player_vel = 0
-	engine = clamp(engine, -1500, 3000)
+	engine = clamp(engine, -100, 200)
+	
+	player_lateral_vel = 0
+	
+	if input.is_action_just_pressed("Drift"):
+		is_drifting = true
+		previous_speed_limit = speed_limit
+		speed_limit *= drift_forward_vel_reduction_mult
+		drift_timer = 0
+		drift_direction = sign(input.get_axis("Steer_Right", "Steer_Left"))
+	
+	if is_drifting:
+		if input.get_axis("Steer_Right", "Steer_Left") == 0:
+			speed_limit = previous_speed_limit
+			drift_timer = 0
+			is_drifting = false
+			drift_direction = 0
+		else:
+			player_lateral_vel = drift_direction*drift_slide_force*(player_vel/speed_limit)
+	
+	if input.is_action_just_released("Drift") and is_drifting == true:
+		speed_limit = previous_speed_limit
+		drift_timer = 0
+		is_drifting = false
+		drift_direction = 0
 		
 	if is_on_floor():
 		decel = 30
@@ -119,8 +163,11 @@ func _physics_process(delta: float) -> void:
 		if player_vel > speed_limit:
 			player_vel = speed_limit
 	player_vel = move_toward(player_vel, 0, decel*delta)
-	velocity.x = cos(rotation.y)*player_vel*delta
-	velocity.z = -sin(rotation.y)*player_vel*delta
+	#print(player_vel)
+	#print(player_lateral_vel)
+	velocity.x = cos(rotation.y)*player_vel
+	velocity.z = -sin(rotation.y)*player_vel
+	velocity += Vector3(0, 0, player_lateral_vel).rotated(Vector3.UP, rotation.y)
 	rotate_wheels_x(engine*delta, delta)
 	rotate_wheels_y(deg_to_rad(car_rotation_dir)*0.5, delta)
 	racerModel.get_node("AnimationPlayer").seek(1.27085-car_rotation_dir*0.01,false,false)
