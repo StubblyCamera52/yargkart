@@ -6,6 +6,7 @@
 transparency = 2
 alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
+cull_mode = 2
 albedo_texture = ExtResource("1_k16go")
 albedo_texture_force_srgb = true
 texture_filter = 0

@@ -25,6 +25,7 @@ var player_vel := 0.0
 @onready var wheelBR = $BRWheelModel
 @onready var groundRay = $RayCast3D
 @onready var kartMesh = $KartMesh
+@onready var racerModel = $Racer
 var wheel_default_y : float = deg_to_rad(90)
 var car_rotation_dir := 0.0
 
@@ -42,7 +43,11 @@ func init(player_id: int, device_id: int, item_manager_node, checkpoints_list) -
 	print(player_id)
 	
 	kartMesh.set_surface_override_material(0, load("res://models/kart"+str(player)+"Material.tres"))
+	racerModel.get_node("Armature_001/Skeleton3D/Head").set_surface_override_material(0, load("res://models/kart"+str(player)+"Material.tres"))
+	racerModel.get_node("Armature_001/Skeleton3D/Body").set_surface_override_material(0, load("res://models/kart"+str(player)+"Material.tres"))
+	racerModel.get_node("Armature_001/Skeleton3D/Scarf").set_surface_override_material(0, load("res://models/kart"+str(player)+"Material.tres"))
 	input = DeviceInput.new(device_id)
+	racerModel.get_node("AnimationPlayer").play("Steer")
 	
 func rotate_wheels_x(dir: float, delta: float) -> void:
 	wheelFL.rotation.x = move_toward(player_vel, dir, delta*wheel_rotate_speed)
@@ -118,6 +123,7 @@ func _physics_process(delta: float) -> void:
 	velocity.z = -sin(rotation.y)*player_vel*delta
 	rotate_wheels_x(engine*delta, delta)
 	rotate_wheels_y(deg_to_rad(car_rotation_dir)*0.5, delta)
+	racerModel.get_node("AnimationPlayer").seek(1.27085-car_rotation_dir*0.01,false,false)
 	move_and_slide()
 	
 	if is_on_wall():

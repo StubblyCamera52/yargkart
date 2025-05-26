@@ -17,5 +17,5 @@ func shake(time: float, strength: float) -> void:
 		await get_tree().process_frame
 
 func _process(delta: float) -> void:
-	global_position = global_position.move_toward(target.global_position, target.global_position.distance_to(global_position)/7)
+	global_position = global_position.move_toward(target.global_position, target.global_position.distance_to(global_position)*delta*9)
 	look_at(look_target.global_position)

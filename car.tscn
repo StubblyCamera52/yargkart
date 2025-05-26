@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=4 uid="uid://b4eycbitbjbxg"]
+[gd_scene load_steps=11 format=4 uid="uid://b4eycbitbjbxg"]
 
 [ext_resource type="Script" uid="uid://dp3ui4xb33mng" path="res://car.gd" id="1_7822p"]
 [ext_resource type="Material" uid="uid://dypo86i5q6k6g" path="res://models/kartMaterial.tres" id="2_72krn"]
 [ext_resource type="PackedScene" uid="uid://cbjy0k88wv7jt" path="res://models/yargkart wheel.glb" id="2_k61xc"]
 [ext_resource type="Script" uid="uid://bckn7oeukq0lw" path="res://camera_3d.gd" id="4_06lh1"]
 [ext_resource type="FontFile" uid="uid://dxko7rd3rrg1" path="res://fonts/FOT-Seurat Pro B.otf" id="5_td361"]
+[ext_resource type="PackedScene" uid="uid://5xpa4ccd4n71" path="res://scenes/racer.tscn" id="6_72krn"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_k61xc"]
 radius = 0.726298
@@ -61,6 +62,9 @@ shape = SubResource("CapsuleShape3D_k61xc")
 transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.0850269, -0.138039, 0)
 mesh = SubResource("ArrayMesh_mjudg")
 skeleton = NodePath("")
+
+[node name="Racer" parent="." instance=ExtResource("6_72krn")]
+transform = Transform3D(-2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.0689001, -0.127853, 0.00061059)
 
 [node name="FLWheelModel" parent="." instance=ExtResource("2_k61xc")]
 transform = Transform3D(6.5567e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, 6.5567e-08, 0.580147, -0.363534, -0.707741)
