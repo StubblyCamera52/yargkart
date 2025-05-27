@@ -42,14 +42,22 @@ var drift_timer: float = 0
 var wheel_default_y : float = deg_to_rad(90)
 var car_rotation_dir := 0.0
 
+# Checkpoint Variables
 var checkpoints = []
+var next_checkpoint
+var next_checkpoint_id: int = 0
+var score: int = 0
+var next_area
+var check_for_point = true
 
 var previous_speed = velocity.length()
 
 func init(player_id: int, device_id: int, item_manager_node, checkpoints_list) -> void:
 	player = player_id
-	print(checkpoints)
 	checkpoints = checkpoints_list
+	next_checkpoint = checkpoints[0]
+	next_area = next_checkpoint.get_node_or_null("Area3D")
+	#print(next_checkpoint)
 	
 	item_manager = item_manager_node
 	print(device_id)
@@ -128,7 +136,7 @@ func _physics_process(delta: float) -> void:
 		speed_limit *= drift_forward_vel_reduction_mult
 		drift_timer = 0
 		drift_direction = sign(input.get_axis("Steer_Right", "Steer_Left"))
-	
+		#print(sign(input.get_axis("Steer_Right", "Steer_Left")))
 	if is_drifting:
 		if input.get_axis("Steer_Right", "Steer_Left") == 0:
 			speed_limit = previous_speed_limit
@@ -137,6 +145,7 @@ func _physics_process(delta: float) -> void:
 			drift_direction = 0
 		else:
 			player_lateral_vel = drift_direction*drift_slide_force*(player_vel/speed_limit)
+			#print(player_lateral_vel)
 	
 	if input.is_action_just_released("Drift") and is_drifting == true:
 		speed_limit = previous_speed_limit
@@ -190,17 +199,14 @@ func _physics_process(delta: float) -> void:
 	
 	previous_speed = velocity.length()
 	
-	var score: int
-	var next_checkpoint: int = 0
-	var next_area
-	var check_for_point = false
-	next_area = checkpoints[next_checkpoint].get_node("Area3D")
-	check_for_point = true
-	if next_area.overlaps_area($Area3D) and check_for_point == true:
-		#print("checkpoint passed")
+	if next_area.overlaps_area($CheckpointCollider) and check_for_point:
+		print("checkpoint passed")
 		score += 1
-		next_checkpoint = score % 10
-		next_area = checkpoints[next_checkpoint].get_node("Area3D")
+		next_checkpoint_id += 1
+		if next_checkpoint_id > checkpoints.size():
+			next_checkpoint_id = 0
+		next_checkpoint = checkpoints[next_checkpoint_id]
+		next_area = next_checkpoint.get_node_or_null("Area3D")
 		#print(score)
 		#print(next_checkpoint)
 		#print(next_area.get_parent().name)

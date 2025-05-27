@@ -82,6 +82,7 @@ Drift={
 
 3d_physics/layer_1="Course or General"
 3d_physics/layer_2="Item"
+3d_physics/layer_4="Checkpoints"
 3d_physics/layer_5="Player"
 
 [physics]

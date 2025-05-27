@@ -8,7 +8,7 @@
 [ext_resource type="Script" uid="uid://lu8xwg8bpcum" path="res://scripts/effects_manager.gd" id="5_ykrsh"]
 [ext_resource type="PackedScene" path="res://scenes/yargtrack_main.tscn" id="7_ehkex"]
 [ext_resource type="PackedScene" path="res://scenes/yargtrack_offroad.tscn" id="8_ehkex"]
-[ext_resource type="PackedScene" path="res://scenes/checkpoint.tscn" id="9_xersf"]
+[ext_resource type="PackedScene" uid="uid://da3j6hmpso4k2" path="res://scenes/checkpoint.tscn" id="9_xersf"]
 [ext_resource type="PackedScene" uid="uid://bgokgo2dg2by2" path="res://scenes/arrowsign.tscn" id="10_00tp4"]
 
 [sub_resource type="Sky" id="Sky_8uh7m"]
@@ -95,41 +95,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="yargcheckpoint" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-5.68248e-07, 0, -13, 0, 13, 0, 13, 0, -5.68248e-07, 71.4998, -5.19814, -8.63515)
-
-[node name="yargcheckpoint2" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-13, 0, 1.96295e-06, 0, 13, 0, -1.96295e-06, 0, -13, 383.405, -5.19814, 264.648)
-
-[node name="yargcheckpoint3" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-3.60672, 0, -14.5599, 0, 15, 0, 14.5599, 0, -3.60672, 529.527, 78.3578, 792.338)
-
-[node name="yargcheckpoint4" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(12.557, 0, 3.36465, 0, 13, 0, -3.36465, 0, 12.557, 845.111, 9.42293, 483.728)
-
-[node name="yargcheckpoint5" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-13, 0, 1.96295e-06, 0, 13, 0, -1.96295e-06, 0, -13, 513.884, -13.9041, 529.927)
-
-[node name="yargcheckpoint6" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-3.80582, 0, 12.4304, 0, 13, 0, -12.4304, 0, -3.80582, 279.462, -13.9042, 929.284)
-
-[node name="yargcheckpoint7" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(6.09852, 0, 11.4808, 0, 13, 0, -11.4808, 0, 6.09852, -218.469, 2.01266, 777.57)
-
-[node name="yargcheckpoint8" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(0.458905, 0, -12.9919, 0, 13, 0, 12.9919, 0, 0.458905, -77.7095, 4.86294, 533.204)
-
-[node name="yargcheckpoint9" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(-0.458908, 0, 12.9919, 0, 13, 0, -12.9919, 0, -0.458908, -77.7095, 4.86294, 268.755)
-
-[node name="yargcheckpoint10" parent="." instance=ExtResource("9_xersf")]
-transform = Transform3D(12.9919, 0, 0.458906, 0, 13, 0, -0.458906, 0, 12.9919, -360.753, 4.90435, 139.673)
-
 [node name="arrowsign" parent="." instance=ExtResource("10_00tp4")]
 transform = Transform3D(-9.99177, 0, 0.405679, 0, 10, 0, -0.405679, 0, -9.99177, 311.141, 107.817, 757.108)
 
 [node name="arrowsign2" parent="." instance=ExtResource("10_00tp4")]
 transform = Transform3D(7.1997, 0, 6.94005, 0, 10, 0, -6.94005, 0, 7.1997, 592.904, 15.0359, 198.999)
+
+[node name="Checkpoints" type="Node" parent="."]
+
+[node name="1" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(-5.68248e-07, 0, -13, 0, 13, 0, 13, 0, -5.68248e-07, 71.4998, -5.19814, -8.63515)
+
+[node name="2" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(-13, 0, 1.96295e-06, 0, 13, 0, -1.96295e-06, 0, -13, 383.405, -5.19814, 264.648)
+
+[node name="3" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(-3.60672, 0, -14.5599, 0, 15, 0, 14.5599, 0, -3.60672, 529.527, 78.3578, 792.338)
+
+[node name="4" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(12.557, 0, 3.36465, 0, 13, 0, -3.36465, 0, 12.557, 845.111, 9.42293, 483.728)
+
+[node name="5" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(-13, 0, 1.96295e-06, 0, 13, 0, -1.96295e-06, 0, -13, 513.884, -13.9041, 529.927)
+
+[node name="6" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(-3.80582, 0, 12.4304, 0, 13, 0, -12.4304, 0, -3.80582, 279.462, -13.9042, 929.284)
+
+[node name="7" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(6.09852, 0, 11.4808, 0, 13, 0, -11.4808, 0, 6.09852, -218.469, 2.01266, 777.57)
+
+[node name="8" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(0.458905, 0, -12.9919, 0, 13, 0, 12.9919, 0, 0.458905, -77.7095, 4.86294, 533.204)
+
+[node name="9" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(-0.458908, 0, 12.9919, 0, 13, 0, -12.9919, 0, -0.458908, -77.7095, 4.86294, 268.755)
+
+[node name="10" parent="Checkpoints" instance=ExtResource("9_xersf")]
+transform = Transform3D(12.9919, 0, 0.458906, 0, 13, 0, -0.458906, 0, 12.9919, -360.753, 4.90435, 139.673)
 
 [connection signal="timeout" from="EffectsManager/ImpactTimer" to="EffectsManager" method="_on_impact_timer_timeout"]
 [connection signal="timeout" from="EffectsManager/TestUseItemTimer" to="ItemManager" method="_on_test_use_item_timer_timeout"]

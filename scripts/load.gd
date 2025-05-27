@@ -7,9 +7,12 @@ var player_nodes := {}
 
 @onready var render_target = $RenderTarget
 
-@onready var checkpoints = [$yargcheckpoint, $yargcheckpoint2, $yargcheckpoint3, $yargcheckpoint4, $yargcheckpoint5, $yargcheckpoint6, $yargcheckpoint7, $yargcheckpoint8, $yargcheckpoint9, $yargcheckpoint10]
+var checkpoints = []
 
 func _ready() -> void:
+	var checkpoint_container = get_node_or_null("Checkpoints")
+	if checkpoint_container != null:
+		checkpoints.append_array(checkpoint_container.get_children())
 	player_manager.player_joined.connect(spawn_player)
 
 func spawn_player(player: int) -> void:
